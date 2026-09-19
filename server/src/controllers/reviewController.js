@@ -21,9 +21,9 @@ const updateReviewSchema = joi.object({
 // TODO: implement per README.md section 3.
 export async function getAllReviews(req, res, next) {
   try {
-    const reviews = (await Review.find()
+    const reviews = await Review.find()
     //Makes it so it actually returns the user object instead of just the id. And also we make sure we don't pull the password by specifying the fields we want to return
-    .populate('reviewedBy', 'name email'))
+    .populate('reviewedBy', 'name email')
     //To make sure that the most recent review is first
     .sort({createdAt: -1}); 
 
